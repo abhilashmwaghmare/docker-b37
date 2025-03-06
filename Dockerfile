@@ -1,7 +1,8 @@
-FROM nginx:latest
-copy index.html /usr/share/nginx/html
+FROM ubuntu:latest
+RUN apt update -y
+RUN apt install apache2 -y
+COPY index.html /var/www/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["apachectl" , "D" , "FOREGROUND"]
 LABEL author "abhilashwaghmare"
-WORKDIR /mnt
-ADD wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz /mnt
+
